@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* Add a CSS class for the pulsating animation */
+      .pulsate {
+        animation: pulsate 2s linear infinite;
+      }
+
+      @keyframes pulsate {
+        0% {
+          opacity: 0.1;
+        }
+        25% {
+          opacity: 0.5;
+        }
+        50% {
+          opacity: 1;
+        }
+        75% {
+          opacity: 0.5;
+        }
+        100% {
+          opacity: 0.1;
+        }
+      }
+
+    </style>
+  </head>
+  <body>
+    <div id="parent"></div>
+
+    <script src="js/jquery.js"></script>
+    <script>
+        $(document).ready(function () {
+          function inam_pulse(
+            id = 1,
+            position = "absolute",
+            top = "0px",
+            right = "0px",
+            h_w_1 = "40vh",
+            h_w_2 = "30vh",
+            h_w_3 = "20vh",
+            bg_1 = "#87a2be",
+            bg_2 = "#518cca",
+            bg_3 = "#50749b",
+            append_n_or_id='#parent',
+
+          ) {
+            $(`${append_n_or_id}`).append(`<div id="p_ani_${id}">
+              <div id="p_ani_${id + 1}"><div id="p_ani_${id + 2}"></div></div>
+              </div>`);
+
+            //   CSS
+            $(`${append_n_or_id}`).css({
+                overflowX:'hidden',
+                position:"relative",
+                maxWidth:'100%'
+                });
+
+                $(`#p_ani_${id}`).css({
+                zIndex:-1,
+                border: "none",
+                position: `${position}`,
+                right:`${right}`,
+                top:`${top}`,
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                minWidth: `${h_w_1}`,
+                maxWidth: `${h_w_1}`,
+                maxHeight: `${h_w_1}`,
+                minHeight: `${h_w_1}`,
+                background: `${bg_1}`,
+                clipPath: "circle(50% at 50% 50%)",
+                });
+
+            // Apply CSS styles to #p_ani_2
+                $(`#p_ani_${id + 1}`).css({
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                minWidth: `${h_w_2}`,
+                maxWidth: `${h_w_2}`,
+                maxHeight: `${h_w_2}`,
+                minHeight: `${h_w_2}`,
+                background: `${bg_2}`,
+                clipPath: "circle(50% at 50% 50%)",
+                });
+
+            // Apply CSS styles to #p_ani_3
+                $(`#p_ani_${id + 2}`).css({
+                minWidth: `${h_w_3}`,
+                maxWidth: `${h_w_3}`,
+                maxHeight: `${h_w_3}`,
+                minHeight: `${h_w_3}`,
+                background: `${bg_3}`,
+                clipPath: "circle(50% at 50% 50%)",
+                });
+
+            // Add the pulsate class to the parent element to start the animation
+            $(`#p_ani_${id}`).addClass("pulsate");
+          }
+
+          // Call inam_pulse for the third element with different arguments
+          // id, position, top, right, h_w_1, h_w_2, h_w_3, bg_1, bg_2, bg_3,
+
+
+          inam_pulse(2, "absolute", "-70vh", "40%", "150vh", "100vh", "60vh", "#87a2be", "#518cca", "#50749b",'body');
+
+          inam_pulse(6, "absolute", "-120vh", "-150vh", "270vh", "175vh", "110vh", "#87a2be", "#518cca", "#50749b",'body');
+
+          inam_pulse(9, "absolute", "30vh", "100vh", "180vh", "100vh", "60vh", "#87a2be", "#518cca", "#50749b",'body');
+
+        });
+
+
+        // DONE 
+        
+    </script>
+  </body>
+</html>
